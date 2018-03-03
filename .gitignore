@@ -1,0 +1,4 @@
+ChatMockServer.*
+.gradle
+build
+out
