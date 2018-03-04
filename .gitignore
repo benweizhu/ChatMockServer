@@ -2,3 +2,4 @@ ChatMockServer.*
 .gradle
 build
 out
+docker/data
