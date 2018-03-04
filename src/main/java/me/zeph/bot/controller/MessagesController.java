@@ -17,7 +17,7 @@ public class MessagesController {
 
     @RequestMapping(value = "/user/{username}/messages", method = GET)
     public Messages getMessages(@PathVariable("username") String username) {
-        return messagesService.getMesssagesByUsername(username);
+        return messagesService.getMessagesByUsername(username);
     }
 
 }
