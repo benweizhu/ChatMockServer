@@ -28,8 +28,8 @@ public class MessagesController {
 
     @RequestMapping(value = "/user/{username}/messages", method = POST)
     public Messages saveMessage(@PathVariable("username") String username, Message userMessage) {
-        return messagesService.saveMessagesFromUserAndBot(username, userMessage,
-                botService.askBot(userMessage.getText()));
+        String botReply = botService.askBot(userMessage.getText());
+        return messagesService.saveMessagesFromUserAndBot(username, userMessage,botReply);
     }
 
 }
