@@ -2,6 +2,7 @@ package me.zeph.bot.controller;
 
 import me.zeph.bot.model.Message;
 import me.zeph.bot.model.Messages;
+import me.zeph.bot.service.BotService;
 import me.zeph.bot.service.MessagesService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -17,14 +18,18 @@ public class MessagesController {
     @Autowired
     private MessagesService messagesService;
 
+    @Autowired
+    private BotService botService;
+
     @RequestMapping(value = "/user/{username}/messages", method = GET)
     public Messages getMessages(@PathVariable("username") String username) {
         return messagesService.getMessagesByUsername(username);
     }
 
     @RequestMapping(value = "/user/{username}/messages", method = POST)
-    public Messages saveMesssage(@PathVariable("username") String username, Message message) {
-        return messagesService.saveMessagesByUsername(username, message);
+    public Messages saveMessage(@PathVariable("username") String username, Message userMessage) {
+        return messagesService.saveMessagesFromUserAndBot(username, userMessage,
+                botService.askBot(userMessage.getText()));
     }
 
 }

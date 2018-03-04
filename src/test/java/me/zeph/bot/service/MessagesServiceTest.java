@@ -28,7 +28,7 @@ public class MessagesServiceTest {
 
     @Test
     public void shouldSaveMessage() {
-        Messages messages = messagesService.saveMessagesByUsername(USERNAME, getMessage("hi"));
+        Messages messages = messagesService.saveMessagesFromUserAndBot(USERNAME, getMessage("hi"), "");
         assertThat(messages.getUsername(), is(USERNAME));
     }
 
